@@ -3,19 +3,16 @@ from tkinter import messagebox
 import itertools
 import string
 
-# Hardcoded correct password
 CORRECT_PASSWORD = "abc123"
 
 def dictionary_attack(username, dictionary):
-    """Tries passwords from the dictionary file"""
     for password in dictionary:
         if password.strip() == CORRECT_PASSWORD:
             return password
     return None
 
 def brute_force_attack():
-    """Performs brute force attack by trying all 5-letter alphabetical combinations"""
-    chars = string.ascii_letters  # Letters (A-Z, a-z)
+    chars = string.ascii_letters  
     for password in map("".join, itertools.product(chars, repeat=5)):
         if password == CORRECT_PASSWORD:
             return password
@@ -26,8 +23,6 @@ def start_attack():
     if not username:
         messagebox.showwarning("Warning", "Please enter a username!")
         return
-    
-    # Read passwords from the dictionary files
     dictionary = []
     try:
         with open("baby.txt", "r") as file:
